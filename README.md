@@ -9,4 +9,5 @@ As a User
 So I can see my bookmarks
 Show a list of bookmarks
 ``
+
 ![GitHub Logo](/resources/User_Story_01.png)
