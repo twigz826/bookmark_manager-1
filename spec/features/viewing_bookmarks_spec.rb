@@ -3,4 +3,9 @@ feature 'Viewing bookmarks' do
     visit('/')
     expect(page).to have_content 'Bookmark Manager'
   end
+
+  scenario 'when visiting the bookmarks page' do
+    visit('/bookmarks')
+    expect(page).to have_content 'https://www.google.co.uk/'
+  end
 end
