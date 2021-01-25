@@ -1,0 +1,7 @@
+inherit_from:
+  #- ~/usr/local/Homebrew/Library/.rubocop.yml
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - './spec/spec_helper.rb'
