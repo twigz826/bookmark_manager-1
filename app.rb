@@ -5,13 +5,13 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/bookmark'
 
-# The Manager class is the main class.
-class Controller < Sinatra::Base
+# The BookmarkManager class is the main class.
+class BookmarkManager < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
   end
 
   get '/' do
-    'Hello world!'
+    erb :index
   end
 end
