@@ -30,3 +30,11 @@ In steps;
 | Model       | Encapsulate logic with relevant data          | Encapsulate bookmark data in a class    |
 | View        | Display the result to a user                  | Show the bookmark data in a list        |
 | Controller  | Get data from the model and put in the view   | Render bookmark data into to the view   |
+
+## User Story 2
+
+```
+As a time-pressed user
+So that I can save a website
+I would like to add the site's address and title to bookmark manager
+```
