@@ -8,7 +8,7 @@ feature 'Viewing bookmarks' do
 
   scenario 'when visiting the bookmarks page' do
     visit('/bookmarks')
-    expect(page).to have_content 'https://www.google.co.uk/'
-    expect(page).to have_content 'https://www.github.com/'
+    expect(page).to have_content 'http://www.google.com'
+    expect(page).to have_content 'http://www.makersacademy.com'
   end
 end
