@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-ENV['RACK_ENV'] = 'test'
+ENV['ENVIRONMENT'] = 'test'
 
 require 'capybara'
 require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-console'
+require 'setup_test_database'
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 Capybara.app = BookmarkManager
@@ -16,6 +17,9 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
 SimpleCov.start
 
 RSpec.configure do |config|
+  config.before(:each) do
+    setup_test_database
+  end
   config.after(:suite) do
     config.expect_with :rspec do |expectations|
       expectations.include_chain_clauses_in_custom_matcher_descriptions = true
