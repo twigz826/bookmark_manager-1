@@ -6,6 +6,7 @@ ruby '3.0.0'
 
 group :test do
   gem 'capybara'
+  gem 'pg'
   gem 'rspec'
   gem 'rubocop'
   gem 'rubocop-rspec'
