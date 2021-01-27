@@ -19,8 +19,8 @@ describe Bookmark do
 
   describe '.add' do
     it 'adds a bookmark to the database' do
-      Bookmark.add('http://www.makersacademy.com')
-      expect(Bookmark.all).to include('http://www.makersacademy.com')
+      Bookmark.add('http://www.hackertyper.com')
+      expect(Bookmark.all).to include('http://www.hackertyper.com')
     end
   end
 end
