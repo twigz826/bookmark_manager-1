@@ -8,10 +8,7 @@ feature 'Adding a bookmark' do
   end
 
   scenario 'adds new link' do
-    visit('/')
-    click_button('Add link')
-    fill_in :save_link, with: 'http://www.hackertyper.com'
-    click_button('Save link')
-    expect(page).to have_content 'http://www.hackertyper.com'
+    add_bookmark('http://www.hackertyper.com', 'Hacker Typer')
+    expect(page).to have_content 'Hacker Typer'
   end
 end

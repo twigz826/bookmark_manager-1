@@ -2,6 +2,7 @@
 
 ENV['ENVIRONMENT'] = 'test'
 
+require 'features/web_helpers'
 require 'capybara'
 require 'capybara/rspec'
 require 'simplecov'
@@ -21,6 +22,7 @@ RSpec.configure do |config|
     setup_test_database
   end
   config.after(:suite) do
+    setup_test_database
     config.expect_with :rspec do |expectations|
       expectations.include_chain_clauses_in_custom_matcher_descriptions = true
     end

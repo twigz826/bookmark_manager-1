@@ -7,17 +7,17 @@ feature 'Viewing bookmarks' do
   end
 
   scenario 'when visiting the bookmarks page' do
-    connection = PG.connect(dbname: 'bookmark_manager_test')
+    con = PG.connect(dbname: 'bookmark_manager_test')
 
     # Add the test data
-    connection.exec("INSERT INTO bookmarks VALUES(1, 'http://www.makersacademy.com');")
-    connection.exec("INSERT INTO bookmarks VALUES(2, 'http://www.destroyallsoftware.com');")
-    connection.exec("INSERT INTO bookmarks VALUES(3, 'http://www.google.com');")
+    con.exec("INSERT INTO bookmarks VALUES (1, 'www.makersacademy.com', 'Makers academy');")
+    con.exec("INSERT INTO bookmarks VALUES(2, 'www.destroyallsoftware.com', 'Destroy all software');")
+    con.exec("INSERT INTO bookmarks VALUES(3, 'www.google.com', 'Google');")
 
     visit('/')
 
-    expect(page).to have_content 'http://www.makersacademy.com'
-    expect(page).to have_content 'http://www.destroyallsoftware.com'
-    expect(page).to have_content 'http://www.google.com'
+    expect(page).to have_content 'Makers academy'
+    expect(page).to have_content 'Destroy all software'
+    expect(page).to have_content 'Google'
   end
 end
