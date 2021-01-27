@@ -47,3 +47,12 @@ To create the manager's database:
 2.  Create the database using the `psql` command `CREATE DATABASE bookmark_manager;`
 3.  Connect to the database using the `pqsl` command `\c bookmark_manager;`
 4.  Run the query we have saved in the file `./db/migrations/01_create_bookmarks_table.sql`
+
+
+### User story 3
+
+'''
+As a user,
+So that I can save a url,
+I would like to add a bookmark to the bookmark manager.
+'''
