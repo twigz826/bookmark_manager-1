@@ -15,7 +15,6 @@ class Bookmark
 
   def self.all
     rs = @con.exec 'SELECT * FROM bookmarks'
-    p rs
     rs.map { |bookmark| { bookmark['title'] => bookmark['url'] } }
   end
 end
