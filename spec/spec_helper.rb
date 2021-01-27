@@ -2,12 +2,12 @@
 
 ENV['ENVIRONMENT'] = 'test'
 
-require 'features/web_helpers'
 require 'capybara'
 require 'capybara/rspec'
+require 'clear_test_database'
+require 'features/web_helpers'
 require 'simplecov'
 require 'simplecov-console'
-require 'setup_test_database'
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 Capybara.app = BookmarkManager
@@ -19,10 +19,10 @@ SimpleCov.start
 
 RSpec.configure do |config|
   config.before(:each) do
-    setup_test_database
+    clear_test_database
   end
   config.after(:suite) do
-    setup_test_database
+    clear_test_database
     config.expect_with :rspec do |expectations|
       expectations.include_chain_clauses_in_custom_matcher_descriptions = true
     end

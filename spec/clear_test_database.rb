@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-def setup_test_database
-  p 'Setting up test database...'
+def clear_test_database
+  p 'Clearing test database...'
   connection = PG.connect dbname: 'bookmark_manager_test'
   connection.exec('TRUNCATE bookmarks;')
 end

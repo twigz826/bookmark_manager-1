@@ -8,7 +8,8 @@ feature 'Adding a bookmark' do
   end
 
   scenario 'adds new link' do
-    add_bookmark('http://www.hackertyper.com', 'Hacker Typer')
-    expect(page).to have_content 'Hacker Typer'
+    add_bookmark(SITE_HACKER_TYPER_URL, SITE_HACKER_TYPER_TITLE)
+    expect(page).to have_content SITE_HACKER_TYPER_TITLE
+    page.has_link?(SITE_HACKER_TYPER_URL)
   end
 end
