@@ -11,15 +11,15 @@ class Bookmark
          else PG.connect dbname: 'bookmark_manager'
          end
 
-  def initialize(id:, title:, url:)
+  def initialize(id:, url:, title:)
     @id = id
     @title = title
     @url = url
   end
 
-  def self.add(new_url, new_title)
-    result = @con.exec("INSERT INTO bookmarks (url, title) VALUES('#{new_url}', '#{new_title}') RETURNING id, url, title")
-    Bookmark.new(id: result[0]['id'], url: result[0]['url'], title: result[0]['title'])
+  def self.add(url, title)
+    rs = @con.exec("INSERT INTO bookmarks (url, title) VALUES('#{url}', '#{title}') RETURNING id")
+    rs[0]['id']
   end
 
   def self.all
