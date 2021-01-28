@@ -4,7 +4,7 @@ require 'pg'
 
 # Each bookmark is an instance of the Bookmark class.
 class Bookmark
-  attr_reader :id, :title, :url
+  attr_reader :id, :url, :title
 
   @con = if ENV['ENVIRONMENT'] == 'test'
            PG.connect dbname: 'bookmark_manager_test'
