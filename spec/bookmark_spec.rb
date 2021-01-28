@@ -19,10 +19,25 @@ describe Bookmark do
 
   describe '.add' do
     it 'adds a bookmark to the database' do
-      test_bookmark_id = Bookmark.add(SITE_HACKER_TYPER_URL, SITE_HACKER_TYPER_TITLE)
-      table_bookmark = get_bookmark_from_table_by_id(test_bookmark_id)
-      expect(table_bookmark.title).to eq SITE_HACKER_TYPER_TITLE
-      expect(table_bookmark.url).to eq SITE_HACKER_TYPER_URL
+      test_bookmark_id = Bookmark.add(SITE_HACKER_TYPER_URL, SITE_HACKER_TYPER_TITLE)[0]['id']
+      rs = get_by_id(test_bookmark_id)[0]
+      expect(rs['title']).to eq SITE_HACKER_TYPER_TITLE
+      expect(rs['url']).to eq SITE_HACKER_TYPER_URL
+    end
+  end
+
+  describe '.delete' do
+    it 'deletes a specific bookmark from the database' do
+      con.exec "INSERT INTO bookmarks (url, title) VALUES('#{SITE_BBC_NEWS_URL}', '#{SITE_BBC_NEWS_TITLE}')"
+      con.exec "INSERT INTO bookmarks (url, title) VALUES('#{SITE_GOOGLE_URL}', '#{SITE_GOOGLE_TITLE}')"
+      con.exec "INSERT INTO bookmarks (url, title) VALUES('#{SITE_MAKERS_URL}', '#{SITE_MAKERS_TITLE}')"
+
+      test_bookmark = get_id_by_url(SITE_GOOGLE_URL)[0]
+
+      Bookmark.delete(test_bookmark['id'])
+
+      rs = con.query "SELECT EXISTS (SELECT title FROM bookmarks WHERE title='#{test_bookmark['id']}')"
+      expect(rs[0]['exists']).to eq 'f'
     end
   end
 end

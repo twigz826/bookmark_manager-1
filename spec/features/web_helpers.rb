@@ -20,12 +20,12 @@ def add_bookmark_feature(bookmark, title)
   click_button('Save Bookmark')
 end
 
-def get_bookmark_from_table_by_id(id)
+def get_by_id(id)
   con = PG.connect dbname: 'bookmark_manager_test'
-  rs = con.query("SELECT * FROM bookmarks WHERE id = '#{id}'")
-  Bookmark.new(id: rs[0]['id'], url: rs[0]['url'], title: rs[0]['title'])
+  con.query "SELECT * FROM bookmarks WHERE id = '#{id}'"
 end
 
-def delete_bookmark_from_table_by_id(id)
+def get_id_by_url(url)
   con = PG.connect dbname: 'bookmark_manager_test'
+  con.query "SELECT * FROM bookmarks WHERE url = '#{url}'"
 end
