@@ -12,12 +12,8 @@ feature 'Viewing bookmarks' do
     Bookmark.add(SITE_MAKERS_URL, SITE_MAKERS_TITLE)
 
     visit('/')
-
-    expect(page).to have_content SITE_BBC_NEWS_TITLE
-    page.has_link?(SITE_BBC_NEWS_URL)
-    expect(page).to have_content SITE_GOOGLE_TITLE
-    page.has_link?(SITE_GOOGLE_URL)
-    expect(page).to have_content SITE_MAKERS_TITLE
-    page.has_link?(SITE_MAKERS_URL)
+    expect(page).to have_link(SITE_BBC_NEWS_TITLE, href: SITE_BBC_NEWS_URL)
+    expect(page).to have_link(SITE_GOOGLE_TITLE, href: SITE_GOOGLE_URL)
+    expect(page).to have_link(SITE_MAKERS_TITLE, href: SITE_MAKERS_URL)
   end
 end
