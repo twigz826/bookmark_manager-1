@@ -14,8 +14,8 @@ SITE_MAKERS_TITLE = 'Makers Academy'
 
 def add_bookmark(bookmark, title)
   visit('/')
-  click_button('Add link')
+  click_button('Add Bookmark')
   fill_in :save_link, with: bookmark
   fill_in :save_title, with: title
-  click_button('Save link')
+  click_button('Save Bookmark')
 end
