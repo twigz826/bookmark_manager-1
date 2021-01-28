@@ -3,9 +3,11 @@
 require 'bookmark'
 
 describe Bookmark do
+  let(:con) { PG.connect dbname: 'bookmark_manager_test' }
+
   describe '.all' do
     it 'returns all bookmarks' do
-      con = PG.connect dbname: 'bookmark_manager_test'
+      #con = PG.connect dbname: 'bookmark_manager_test'
 
       con.exec("INSERT INTO bookmarks (url, title) VALUES('#{SITE_BBC_NEWS_URL}', '#{SITE_BBC_NEWS_TITLE}');")
       con.exec("INSERT INTO bookmarks (url, title) VALUES('#{SITE_GOOGLE_URL}', '#{SITE_GOOGLE_TITLE}');")
