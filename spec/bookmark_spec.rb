@@ -19,8 +19,9 @@ describe Bookmark do
 
   describe '.add' do
     it 'adds a bookmark to the database' do
-      test_bookmark_id = Bookmark.add(SITE_HACKER_TYPER_URL, SITE_HACKER_TYPER_TITLE)[0]['id']
-      rs = get_by_id(test_bookmark_id)[0]
+      test_bookmark = Bookmark.add(SITE_HACKER_TYPER_URL, SITE_HACKER_TYPER_TITLE)[0]
+      id = test_bookmark['id']
+      rs = get_by_id(id)
       expect(rs['title']).to eq SITE_HACKER_TYPER_TITLE
       expect(rs['url']).to eq SITE_HACKER_TYPER_URL
     end
@@ -32,7 +33,7 @@ describe Bookmark do
       con.exec "INSERT INTO bookmarks (url, title) VALUES('#{SITE_GOOGLE_URL}', '#{SITE_GOOGLE_TITLE}')"
       con.exec "INSERT INTO bookmarks (url, title) VALUES('#{SITE_MAKERS_URL}', '#{SITE_MAKERS_TITLE}')"
 
-      test_bookmark = get_id_by_url(SITE_GOOGLE_URL)[0]
+      test_bookmark = get_id_by_url(SITE_GOOGLE_URL)
 
       Bookmark.delete(test_bookmark['id'])
 
