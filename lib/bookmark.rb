@@ -18,7 +18,8 @@ class Bookmark
   end
 
   def self.add(new_url, new_title)
-    @con.exec "INSERT INTO bookmarks (url, title) VALUES('#{new_url}', '#{new_title}')"
+    result = @con.exec("INSERT INTO bookmarks (url, title) VALUES('#{new_url}', '#{new_title}') RETURNING id, url, title")
+    Bookmark.new(id: result[0]['id'], url: result[0]['url'], title: result[0]['title'])
   end
 
   def self.all
