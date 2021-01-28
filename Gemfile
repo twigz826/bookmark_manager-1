@@ -16,5 +16,4 @@ group :test do
   gem 'sinatra'
   gem 'sinatra-contrib'
   gem 'thin'
-  gem 'webrick'
 end
