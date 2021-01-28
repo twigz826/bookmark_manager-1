@@ -20,7 +20,7 @@ describe Bookmark do
   describe '.add' do
     it 'adds a bookmark to the database' do
       bookmark = Bookmark.add(SITE_HACKER_TYPER_URL, SITE_HACKER_TYPER_TITLE)
-      test_bookmark = PG.connect(dbname: 'bookmark_manager_test').query("SELECT * FROM bookmarks WHERE id = #{bookmark.id};")
+      added_bookmark_object(id = bookmark.id)
       expect(bookmark.title).to include(SITE_HACKER_TYPER_TITLE)
       expect(bookmark.url).to include(SITE_HACKER_TYPER_URL)
     end

@@ -12,10 +12,19 @@ SITE_HACKER_TYPER_TITLE = 'Hacker Typer'
 SITE_MAKERS_URL = 'https://www.makersacademy.com/'
 SITE_MAKERS_TITLE = 'Makers Academy'
 
-def add_bookmark(bookmark, title)
+def add_bookmark_feature(bookmark, title)
   visit('/')
   click_button('Add Bookmark')
   fill_in :save_link, with: bookmark
   fill_in :save_title, with: title
   click_button('Save Bookmark')
+end
+
+def create_bookmark_object()
+end
+
+def added_bookmark_object(id)
+  con = PG.connect dbname: 'bookmark_manager_test'
+  rs = con.query("SELECT * FROM bookmarks WHERE id = #{id};")
+  rs.first
 end
