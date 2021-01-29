@@ -1,23 +1,21 @@
 # frozen_string_literal: true
 
-#Hello world
-
 require 'pg'
 
 # Each bookmark is an instance of the Bookmark class.
 class Bookmark
   attr_reader :id, :url, :title
 
-  @con = if ENV['ENVIRONMENT'] == 'test'
-           PG.connect dbname: 'bookmark_manager_test'
-         else PG.connect dbname: 'bookmark_manager'
-         end
-
   def initialize(id:, url:, title:)
     @id = id
     @title = title
     @url = url
   end
+
+  @con = if ENV['ENVIRONMENT'] == 'test'
+           PG.connect dbname: 'bookmark_manager_test'
+         else PG.connect dbname: 'bookmark_manager'
+         end
 
   def self.all
     rs = @con.exec 'SELECT * FROM bookmarks'

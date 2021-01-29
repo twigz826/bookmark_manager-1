@@ -29,16 +29,19 @@ describe Bookmark do
 
   describe '.delete' do
     it 'deletes a specific bookmark from the database' do
-      con.exec "INSERT INTO bookmarks (url, title) VALUES('#{SITE_BBC_NEWS_URL}', '#{SITE_BBC_NEWS_TITLE}')"
-      con.exec "INSERT INTO bookmarks (url, title) VALUES('#{SITE_GOOGLE_URL}', '#{SITE_GOOGLE_TITLE}')"
-      con.exec "INSERT INTO bookmarks (url, title) VALUES('#{SITE_MAKERS_URL}', '#{SITE_MAKERS_TITLE}')"
-
-      test_bookmark = get_id_by_url(SITE_GOOGLE_URL)
-
-      Bookmark.delete(test_bookmark['id'])
-
-      rs = con.query "SELECT EXISTS (SELECT title FROM bookmarks WHERE title='#{test_bookmark['id']}')"
-      expect(rs[0]['exists']).to eq 'f'
+      bookmark = Bookmark.add(url: SITE_GOOGLE_URL, title: SITE_GOOGLE_TITLE)
+      Bookmark.delete(id: bookmark.id)
+      expect(Bookmark.all.length).to eq 0
+    #   con.exec "INSERT INTO bookmarks (url, title) VALUES('#{SITE_BBC_NEWS_URL}', '#{SITE_BBC_NEWS_TITLE}')"
+    #   con.exec "INSERT INTO bookmarks (url, title) VALUES('#{SITE_GOOGLE_URL}', '#{SITE_GOOGLE_TITLE}')"
+    #   con.exec "INSERT INTO bookmarks (url, title) VALUES('#{SITE_MAKERS_URL}', '#{SITE_MAKERS_TITLE}')"
+    #
+    #   test_bookmark = get_id_by_url(SITE_GOOGLE_URL)
+    #
+    #   Bookmark.delete(test_bookmark['id'])
+    #
+    #   rs = con.query "SELECT EXISTS (SELECT title FROM bookmarks WHERE title='#{test_bookmark['id']}')"
+    #   expect(rs[0]['exists']).to eq 'f'
     end
   end
 end

@@ -56,3 +56,11 @@ As a user,
 So that I can save a url,
 I would like to add a bookmark to the bookmark manager.
 '''
+
+### User story 4
+
+```
+As a user
+So I can remove my bookmark from Bookmark Manager
+I want to delete a bookmark
+```

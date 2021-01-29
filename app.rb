@@ -7,11 +7,13 @@ require './lib/bookmark'
 
 # The BookmarkManager class is the main class.
 class BookmarkManager < Sinatra::Base
+  enable :sessions, :method_override
+
   configure :development do
     register Sinatra::Reloader
   end
 
-  get '/' do
+  get '/bookmarks' do
     @bookmarks = Bookmark.all
     erb :index
   end
@@ -22,6 +24,12 @@ class BookmarkManager < Sinatra::Base
 
   post '/save_link' do
     Bookmark.add(params[:save_link], params[:save_title])
-    redirect '/'
+    redirect '/bookmarks'
+  end
+
+  delete '/bookmarks/:id' do
+    connection = PG.connect(dbname: 'bookmark_manager_test')
+    connection.exec("DELETE FROM bookmarks WHERE id = #{params['id']}")
+    redirect '/bookmarks'
   end
 end
