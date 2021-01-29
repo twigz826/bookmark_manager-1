@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+#Hello world
+
 require 'pg'
 
 # Each bookmark is an instance of the Bookmark class.
